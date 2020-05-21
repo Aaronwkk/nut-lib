@@ -17,3 +17,8 @@ dev:
 build:
 	npm run build
 
+docs:
+	vuepress dev docs
+
+docs-build:
+	npm run docs:build

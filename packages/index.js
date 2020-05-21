@@ -1,12 +1,4 @@
-const componentList = [
-  'SearchPage',
-  'FormDialog',
-  'FormPage',
-  'FormGroup',
-  'DetailDialog',
-  'DetailPage',
-  'TableContainer',
-];
+import componentList from './const'
 
 const _import = x => require(`./${x}/index.vue`).default;
 

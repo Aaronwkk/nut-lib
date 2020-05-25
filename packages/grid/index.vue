@@ -1,7 +1,6 @@
 <template>
   <div class="flex-box">
     <div
-      v-watermark="watermark ? 'in' : 'NONE'"
       class="flex-box">
       <el-table
         v-loading="searching"
@@ -31,7 +30,7 @@
 </template>
 
 <script>
-import { deepCopy } from '@/packages/utils';
+import { deepCopy } from '../utils/deepCopy';
 
 export default {
   props: {
@@ -42,10 +41,6 @@ export default {
     remoteMethod: {
       type: Function,
       default: null,
-    },
-    watermark: {
-      type: Boolean,
-      default: true,
     },
     pageSize: {
       type: Number,

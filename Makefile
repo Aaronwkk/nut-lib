@@ -11,14 +11,14 @@ install:
 install-cn:
 	npm install --registry=http://registry.npm.taobao.org
 
-dev:
-	npm run dev
+# dev:
+# 	npm run dev
 
 build:
 	npm run build
 
-docs:
-	vuepress dev docs
+dev:
+	npm run docs
 
 docs-build:
 	npm run docs:build

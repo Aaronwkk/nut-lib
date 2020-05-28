@@ -5,9 +5,9 @@ module.exports = {
     "sourceType": "module",
     "allowImportExportEverywhere": false,
   },
-  "extends": [
-    require.resolve('dev-hook-utils/dist/hooks/eslintrc.js')
-  ],
+  // "extends": [
+  //   require.resolve('dev-hook-utils/dist/hooks/eslintrc.js')
+  // ],
   "globals": {
     "APP_VERSION": true,
     "$": true,

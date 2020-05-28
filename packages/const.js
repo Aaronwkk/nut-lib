@@ -1,5 +1,7 @@
 export default [
   'grid',
+  'search-form',
+  'search-table'
 ]
 // const componentList = [
 //   'grid',

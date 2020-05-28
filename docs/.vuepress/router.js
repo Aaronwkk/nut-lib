@@ -15,6 +15,7 @@ module.exports = [
     collapsable: false,
     children: [
       ['/grid', 'Grid 表格分页组件库'],
+      ['/search', 'Search 搜索组件库'],
       // ['/search-page', 'SearchPage 搜索列表组件'],
       // ['/panel-title', 'PanelTitle 面板标题组件'],
       // ['/form-page', 'FormPage 表单页面组件'],

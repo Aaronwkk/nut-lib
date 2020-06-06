@@ -1,15 +1,16 @@
 <template>
   <div>
-    <el-form :model="model" ref="form" :label-width="label">
+    <el-form :model="model" ref="form" :label-width="label" :inline="inline">
       <slot/>
       <el-form-item>
-        <el-button @click="handleClick" type="primary">search</el-button>
+        <el-button @click="handleSerch" type="primary">search</el-button>
         <el-button @click="handleCancle" type="waring">reset</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 <script>
+
 export default {
   data(){
     return {}
@@ -18,6 +19,10 @@ export default {
     model: {
       type: Object,
       default: () => {}
+    },
+    inline: {
+      type: Boolean,
+      default: false
     },
     api: {
       type: Promise,
@@ -28,8 +33,11 @@ export default {
       default: '100px'
     }
   },
+  mounted(){
+    this.form = this.$refs.form
+  },
   methods: {
-    handleClick(){
+    handleSerch(){
       this.$refs.form.validate((vali)=>{
         if(vali){
           this.api(this.form);

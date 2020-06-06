@@ -1,20 +1,32 @@
 <template>
   <div class="page-wrap">
     <div class="search">
-      <search-form :form="form" :api="remoteApi"></search-form>
+      <el-form :model="form" inline :rules="rules" ref="form">
+        <slot name="form"/>
+        <el-form-item>
+          <el-button type="primary" @click="handleSearch">search</el-button>
+          <el-button @click="handleCancle">reset</el-button>
+        </el-form-item>
+      </el-form>
     </div>
-    <div class="main-content">
-      <grid ref="grid" :remote-method="api"></grid>
-    </div>
+    <slot/>
+    <grid
+      ref="grid" 
+      :remote-method="api"
+      :rowKey="rowKey"
+      @selectionChange="(val)=>$emit('selectionChange', val)"
+    >
+      <slot name="table"></slot>
+    </grid>
   </div>
 </template>
 <script>
 
-import searchForm from '../search-form'
+import formContent from '../form-content'
 import grid from '../grid'
 
 export default {
-  components: {searchForm},
+  components: {formContent},
   data(){
     return {
       
@@ -26,24 +38,45 @@ export default {
       default: () => {}
     },
     api: {
-      type: Promise,
-      default: async () => {}
+      type: Function,
+      default: () => {}
     },
+    rules: {
+      type: Object,
+      default: () => {}
+    },
+    rowKey: {
+      type: Function,
+      default: () => {}
+    }
+  },
+  mounted(){
+    this.grid = this.$refs.grid
+    this.table = this.$refs.grid.$refs.table
   },
   methods: {
-    handleClick(){
+    handleSearch(){
       this.$refs.form.validate((vali)=>{
+        this.$emit('search')
         if(vali){
-          this.api();
+          this.loadData();
         }
       });
     },
     handleCancle(){
+      this.$emit('reset')
       this.$refs.form.resetFields();
     },
-    async remoteApi(params){
+    async loadData(params){
       await this.$refs.grid.loadData(params)
     }
   }
 }
 </script>
+<style lang="scss">
+.page-wrap{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+</style>

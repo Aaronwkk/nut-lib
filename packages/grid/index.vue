@@ -7,12 +7,14 @@
         :data="pagedData"
         :cell-class-name="classNameHandle"
         v-bind="moreBind()"
+        ref="table"
         border
         stripe
         highlight-current-row
+        :row-key="rowKey"
         height="100%"
         style="width: 100%;margin-bottom: 12px;"
-        @selection-change="(selection)=>$emit('selectionChange', selection)">
+        @selection-change="onSelectionChange">
         <slot/>
       </el-table>
     </div>
@@ -30,7 +32,7 @@
 </template>
 
 <script>
-import { deepCopy } from '../utils/deepCopy';
+import deepCopy from '../utils/deepCopy';
 
 export default {
   props: {
@@ -70,9 +72,9 @@ export default {
       type: [String, Function],
       default: ''
     },
-    selectionChange: {
+    rowKey: {
       type: Function,
-      default: () => {},
+      default: () => {}
     }
   },
   data() {
@@ -104,6 +106,9 @@ export default {
     },
   },
   methods: {
+    onSelectionChange(val){
+      this.$emit('selectionChange', val)
+    },
     async loadData(params) {
       if (this.remoteMethod) {
         this.currentPage = 1;
@@ -130,7 +135,6 @@ export default {
           const { data, recordsCount } = response;
           this.data = data;
           this.total = recordsCount;
-          this.$emit('data-change', data);
         }
         this.searching = false;
         return response;

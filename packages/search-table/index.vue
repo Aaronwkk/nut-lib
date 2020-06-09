@@ -11,7 +11,7 @@
     </div>
     <slot/>
     <grid
-      ref="grid" 
+      ref="grid"
       :remote-method="api"
       :rowKey="rowKey"
       @selectionChange="(val)=>$emit('selectionChange', val)"
@@ -22,11 +22,9 @@
 </template>
 <script>
 
-import formContent from '../form-content'
 import grid from '../grid'
 
 export default {
-  components: {formContent},
   data(){
     return {
       

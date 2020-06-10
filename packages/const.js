@@ -1,15 +1,6 @@
 export default [
   'grid',
   'search-table',
-  'form-dialog'
+  'form-dialog',
+  'form-group'
 ]
-// const componentList = [
-//   'grid',
-//   'SearchPage',
-//   'FormDialog',
-//   'FormPage',
-//   'FormGroup',
-//   'DetailDialog',
-//   'DetailPage',
-//   'TableContainer',
-// ];

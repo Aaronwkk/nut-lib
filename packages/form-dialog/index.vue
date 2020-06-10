@@ -3,7 +3,7 @@
     v-bind="_options"
     :visible.sync="dialogVisible"
     @close="onClose">
-    <form-container ref="formContainer" :button="false">
+    <form-container ref="formContainer" :button="false" :options="formOptions">
       <slot/>
     </form-container>
     <span slot="footer" class="dialog-footer">
@@ -26,6 +26,10 @@ export default {
       default: '新增'
     },
     options: {
+      type: Object,
+      default: () => {}
+    },
+    formOptions: {
       type: Object,
       default: () => {}
     }

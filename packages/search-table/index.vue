@@ -71,7 +71,7 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style>
 .page-wrap{
   display: flex;
   flex: 1;

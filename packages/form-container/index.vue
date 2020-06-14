@@ -2,8 +2,8 @@
 <el-form v-bind="attrs" ref="form">
   <slot/>
   <el-form-item v-if="button">
-    <el-button @click="handleSerch" type="primary">search</el-button>
-    <el-button @click="handleCancle" type="waring">reset</el-button>
+    <el-button @click="handleSerch" type="primary">{{confirmDesc}}</el-button>
+    <el-button @click="handleCancle" type="waring">{{resetDesc}}</el-button>
   </el-form-item>
 </el-form>
 </template>
@@ -23,6 +23,14 @@ export default {
     inline: {
       type: Boolean,
       default: false
+    },
+    confirmDesc: {
+      type:String,
+      default: '搜索'
+    },
+    resetDesc:{
+      type: String,
+      default: '重置'
     },
     button: {
       type: Boolean,
@@ -62,11 +70,13 @@ export default {
       this.$refs.form.validate((vali)=>{
         if(vali){
           this.api(this.form);
+          this.$emit('search')
         }
       });
     },
     handleCancle(){
       this.resetFields();
+      this.$emit('reset')
     },
     resetFields(){
       this.$refs.form.resetFields();

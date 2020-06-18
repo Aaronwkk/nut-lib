@@ -4,7 +4,7 @@
       <el-form :model="form" inline :rules="rules" ref="form">
         <slot name="form"/>
         <el-form-item>
-          <el-button type="primary" @click="handleSearch">search</el-button>
+          <el-button type="primary" :loading="loading" @click="handleSearch">search</el-button>
           <el-button @click="handleCancle">reset</el-button>
         </el-form-item>
       </el-form>
@@ -27,7 +27,7 @@ import grid from '../grid'
 export default {
   data(){
     return {
-      
+      loading: false
     }
   },
   props: {
@@ -66,7 +66,9 @@ export default {
       this.$refs.form.resetFields();
     },
     async loadData(params){
+      this.loading = true
       await this.$refs.grid.loadData(params)
+      this.loading = false
     }
   }
 }

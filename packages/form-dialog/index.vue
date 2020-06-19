@@ -4,24 +4,28 @@
     :visible.sync="dialogVisible"
     :before-close="beforeClose"
     @close="onClose">
-    <form-container ref="formContainer" :button="false" :options="formOptions">
+    <el-form :model="form" ref="form">
       <slot/>
-    </form-container>
+    </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="$emit('update:visible', false)">取 消</el-button>
-      <el-button type="primary" @click="handleConfirm">确 定</el-button>
+      <el-button :loading="loading" type="primary" @click="handleConfirm">确 定</el-button>
     </span>
   </el-dialog>
 </template>
 
 <script>
-import formContainer from '../form-container'
 
 export default {
-  components: {
-    formContainer
-  },
   props: {
+    form: {
+      type: Object,
+      default: () => {}
+    },
+    api: {
+      type: Function,
+      default: () => {}
+    },
     visible: {
       type: Boolean,
       default: false
@@ -41,7 +45,8 @@ export default {
   },
   data(){
     return {
-      dialogVisible: false
+      dialogVisible: false,
+      loading: false
     }
   },
   watch: {
@@ -56,7 +61,7 @@ export default {
   },
   methods: {
     onClose(){
-      this.$refs.formContainer.resetFields()
+      this.$refs.form.resetFields()
     },
     beforeClose(done){
       this.dialogVisible = false;
@@ -64,7 +69,20 @@ export default {
       done()
     },
     handleConfirm(){
-      this.$refs.formContainer.resetFields()
+      this.$refs.form.validate(async (vali)=>{
+        if(vali){
+          this.$emit('confirm')
+          try{
+            this.loading = true
+            await this.api(this.form);
+            this.$emit('update:visible', false)
+          } catch(e){
+            console.log(e)
+          } finally {
+            this.loading = false
+          }
+        }
+      });
     }
   }
 };

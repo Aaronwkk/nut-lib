@@ -1,5 +1,5 @@
 <template>
-<el-form v-bind="attrs" ref="form">
+<el-form v-bind="attrs" :model="model" ref="form">
   <slot/>
   <el-form-item v-if="button">
     <el-button @click="handleSerch" type="primary">{{confirmDesc}}</el-button>

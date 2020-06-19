@@ -37,9 +37,9 @@ export default {
     formOptions: {
       type: Object,
       default: () => {}
-    }
+    },
   },
-  data() {
+  data(){
     return {
       dialogVisible: false
     }
@@ -53,16 +53,13 @@ export default {
     _options(){
       return this.options
     },
-    _visible(){
-
-    }
   },
   methods: {
     onClose(){
       this.$refs.formContainer.resetFields()
     },
     beforeClose(done){
-      this.dialogVisible = true;
+      this.dialogVisible = false;
       this.$emit('update:visible', false)
       done()
     },

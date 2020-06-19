@@ -4,7 +4,7 @@
       <el-form :model="form" inline :rules="rules" ref="form">
         <slot name="form"/>
         <el-form-item>
-          <el-button type="primary" :loading="loading" @click="handleSearch">search</el-button>
+          <el-button type="primary" :loading="loading" @click="search">search</el-button>
           <el-button @click="handleCancle">reset</el-button>
         </el-form-item>
       </el-form>
@@ -53,7 +53,7 @@ export default {
     this.table = this.$refs.grid.$refs.table
   },
   methods: {
-    handleSearch(){
+    search(){
       this.$refs.form.validate((vali)=>{
         this.$emit('search')
         if(vali){
@@ -65,9 +65,9 @@ export default {
       this.$emit('reset')
       this.$refs.form.resetFields();
     },
-    async loadData(params){
+    async loadData(){
       this.loading = true
-      await this.$refs.grid.loadData(params)
+      await this.$refs.grid.loadData(this.form)
       this.loading = false
     }
   }

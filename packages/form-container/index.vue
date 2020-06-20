@@ -1,6 +1,7 @@
 <template>
 <el-form
   v-bind="attrs"
+  :model="attrs.model"
   ref="form">
   <slot/>
   <el-form-item v-if="button">

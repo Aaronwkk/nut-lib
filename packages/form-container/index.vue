@@ -2,7 +2,7 @@
 <el-form v-bind="attrs" :model="model" ref="form">
   <slot/>
   <el-form-item v-if="button">
-    <el-button @click="handleSerch" type="primary">{{confirmDesc}}</el-button>
+    <el-button @click="handleSearch" type="primary">{{confirmDesc}}</el-button>
     <el-button @click="handleCancle" type="waring">{{resetDesc}}</el-button>
   </el-form-item>
 </el-form>
@@ -53,7 +53,7 @@ export default {
         model,
         options
       } = this;
-      const opt = Object.assign({}, 
+      const opt = Object.assign({},
         {
           labelWidth: LABEL_WIDTH,
           inline,
@@ -66,7 +66,7 @@ export default {
     this.form = this.$refs.form
   },
   methods: {
-    handleSerch(){
+    handleSearch(){
       this.$refs.form.validate((vali)=>{
         if(vali){
           this.api(this.form);

@@ -37,13 +37,17 @@ export default {
       default: true
     },
     api: {
-      type: Promise,
-      default: async () => {}
+      type: Function,
+      default: () => {}
     },
     options: {
       type: Object,
       default: () => {
       }
+    },
+    rules: {
+      type: Object,
+      default: () => {}
     }
   },
   computed: {
@@ -51,13 +55,15 @@ export default {
       const {
         inline,
         model,
-        options
+        options,
+        rules
       } = this;
       const opt = Object.assign({},
         {
           labelWidth: LABEL_WIDTH,
           inline,
-          model
+          model,
+          rules
         }, options)
       return opt
     }
@@ -69,7 +75,7 @@ export default {
     handleSearch(){
       this.$refs.form.validate((vali)=>{
         if(vali){
-          this.api(this.form);
+          this.api(this.model);
           this.$emit('search')
         }
       });

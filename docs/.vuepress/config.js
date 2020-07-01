@@ -1,17 +1,82 @@
-const path = require('path');
-
 module.exports = {
-  title: 'unt-lib',
-  port: 8008,
-  description: '基于Element-UI的后台标准组件库',
-  themeConfig: {
+  title: 'data Com', // 设置网站标题
+  base: '/dataCom/',
+  description: 'Just for fun', //描述
+  dest: './dist',   // 设置输出目录
+  port: 2333, //端口
+  themeConfig: { //主题配置
+    // 添加导航栏
     nav: [
-      { text: '首页', link: '/' },
-      { text: '脚手架', link: '' }
+      { text: '主页', link: '/' }, // 导航条
+      { text: '组件文档', link: '/baseComponents/' },
+      { text: '知识库', link: '/knowledge/' },
+      {
+        text: 'github',
+        // 这里是下拉列表展现形式。
+        items: [
+          { text: 'focus-outside', link: 'https://github.com/TaoXuSheng/focus-outside' },
+          { text: 'stylus-converter', link: 'https://github.com/TaoXuSheng/stylus-converter' },
+        ]
+      }
     ],
-    sidebar: require('./router'),
-  },
-  chainWebpack: (config) => {
-    config.resolve.alias.set('packages', path.join(__dirname, '../../packages'));
-  },
-};
+    // 为以下路由添加侧边栏
+    sidebar:{
+      '/baseComponents/': [
+        {
+          title: '布局类组件',
+          collapsable: true,
+          children: [
+            'base/test1',
+            'base/test2',
+            'base/test3',
+            'base/test4',
+          ]
+        },
+        {
+          title: '可视化组件',
+          collapsable: true,
+          children: [
+          ]
+        },
+        {
+          title: '工具类组件',
+          collapsable: true,
+          children: [
+          ]
+        },
+        {
+          title: '方法类函数',
+          collapsable: true,
+          children: [
+          ]
+        }
+      ],
+      '/knowledge/': [
+        {
+          title: 'CSS知识库',
+          collapsable: false,
+          children: [
+          ]
+        },
+        {
+          title: 'JS知识库',
+          collapsable: false,
+          children: [
+          ]
+        },
+        {
+          title: 'node知识库',
+          collapsable: false,
+          children: [
+          ]
+        },
+        {
+          title: 'vue知识库',
+          collapsable: false,
+          children: [
+          ]
+        }
+      ]
+    }
+  }
+}

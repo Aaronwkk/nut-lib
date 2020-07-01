@@ -2,12 +2,12 @@
 
 ## search 基础组件介绍
 
-<search-demo name="basic"/>
+<!-- <search-demo name="basic"/> -->
 
-<<< @/docs/.vuepress/components/search/basic.vue
+<!-- <<< @/docs/.vuepress/components/search/basic.vue -->
 
 ## search-table 组件介绍
 
-<search-table name="basic"/>
+<!-- <search-table name="basic"/> -->
 
-<<< @/docs/.vuepress/components/search/search-table.vue
+<!-- <<< @/docs/.vuepress/components/search/search-table.vue -->

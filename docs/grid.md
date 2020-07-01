@@ -1,6 +1,6 @@
 # grid 组件介绍
 
 
-<grid-demo name="basic"/>
+<!-- <grid-demo name="basic"/> -->
 
-<<< @/docs/.vuepress/components/grid/basic.vue
+<!-- <<< @/docs/.vuepress/components/grid/basic.vue -->

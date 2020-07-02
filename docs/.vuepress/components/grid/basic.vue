@@ -1,6 +1,9 @@
 <template>
   <div class="demo-block">
-    <grid :remoteMethod="loadData"/>
+    <grid ref="grid" :remoteMethod="loadData">
+      <el-table-column prop="name" label="名称"/>
+      <el-table-column prop="age" label="年龄"/>
+    </grid>
   </div>
 </template>
 
@@ -11,29 +14,26 @@ export default {
     return {
       detailList: [
         {
-          label: '用户昵称',
-          value: '王小虎'
-        }, {
-          label: '联系方式',
-          value: '13912345678'
-        }, {
-          label: '用户昵称',
-          value: '王小虎'
-        }, {
-          label: '账户余额',
-          value: '3.00 元'
-        }, {
-          label: '会员等级',
-          value: '白银会员'
-        }, {
-          label: '信用分',
-          value: '126'
-        }, {
-          label: '不良记录',
-          value: '无'
-        }
+          age: 18,
+          name: '王小虎'
+        },
+        {
+          age: 18,
+          name: '王小虎'
+        },
+        {
+          age: 18,
+          name: '王小虎'
+        },
+        {
+          age: 18,
+          name: '王小虎'
+        },
       ],
     };
+  },
+  mounted(){
+    this.search()
   },
   methods: {
     loadData() {
@@ -41,6 +41,9 @@ export default {
         data: this.detailList,
         recordsCount: 30
       }
+    },
+    search(){
+      this.$refs.grid.loadData()
     }
   }
 };

@@ -2,11 +2,15 @@
 
 ## search 基础组件介绍
 
+&ensp;
+
 <search-demo name="basic"/>
 
 <<< @/docs/.vuepress/components/search/basic.vue
 
 ## search-table 组件介绍
+
+&ensp;
 
 <search-table name="basic"/>
 

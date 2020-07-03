@@ -1,8 +1,10 @@
 <template>
   <search-table :model="form" :api="remoteApi">
-    <el-form-item>
-      <el-input v-model="form.value"></el-input>
-    </el-form-item>
+    <template slot="form">
+      <el-form-item label="关键字">
+        <el-input v-model="form.value"></el-input>
+      </el-form-item>
+    </template>
   </search-table>
 </template>
 <script>

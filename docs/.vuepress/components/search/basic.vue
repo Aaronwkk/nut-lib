@@ -1,9 +1,9 @@
 <template>
   <form-container :model="form" :api="loadData" inline>
-    <el-form-item label="国家">
+    <el-form-item prop="country" label="国家">
       <el-input v-model="form.country"></el-input>
     </el-form-item>
-    <el-form-item label="搜索关键字">
+    <el-form-item prop="value" label="搜索关键字">
       <el-input v-model="form.value"></el-input>
     </el-form-item>
   </form-container>

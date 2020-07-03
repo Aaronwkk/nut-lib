@@ -12,9 +12,6 @@
 const LABEL_WIDTH = '100px'
 
 export default {
-  data(){
-    return {}
-  },
   props: {
     model: {
       type: Object,
@@ -55,12 +52,12 @@ export default {
       const {
         inline,
         model,
-        options,
+        options = {},
         rules
       } = this;
       const opt = Object.assign({},
         {
-          labelWidth: LABEL_WIDTH,
+          labelWidth: inline? options.labelWidth: LABEL_WIDTH,
           inline,
           model,
           rules
@@ -82,10 +79,11 @@ export default {
     },
     handleCancle(){
       this.resetFields();
-      this.$emit('reset')
+      this.$emit('cancle')
     },
     resetFields(){
       this.$refs.form.resetFields();
+      this.$emit('reset')
     }
   }
 }

@@ -1,14 +1,15 @@
 <template>
   <el-dialog
     v-bind="_options"
-    :visible.sync="dialogVisible"
+    :visible="visible"
     :before-close="beforeClose"
     @close="onClose">
-    <el-form :model="form" ref="form">
+    <el-form :model="model" ref="form">
       <slot/>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="$emit('update:visible', false)">取 消</el-button>
+      <el-button @click="handleReset">重 置</el-button>
       <el-button :loading="loading" type="primary" @click="handleConfirm">确 定</el-button>
     </span>
   </el-dialog>
@@ -18,7 +19,7 @@
 
 export default {
   props: {
-    form: {
+    model: {
       type: Object,
       default: () => {}
     },
@@ -45,13 +46,7 @@ export default {
   },
   data(){
     return {
-      dialogVisible: false,
       loading: false
-    }
-  },
-  watch: {
-    visible(){
-      this.dialogVisible = this.visible
     }
   },
   computed: {
@@ -64,7 +59,7 @@ export default {
       this.$refs.form.resetFields()
     },
     beforeClose(done){
-      this.dialogVisible = false;
+      this.$emit('closed')
       this.$emit('update:visible', false)
       done()
     },
@@ -83,6 +78,10 @@ export default {
           }
         }
       });
+    },
+    handleReset(){
+      this.$emit('reset')
+      this.$refs.form.resetFields()
     }
   }
 };

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-const componentList = ['basic', 'search-table'];
+const componentList = ['basic', 'search-table', 'form-dialog'];
 /* eslint-disable import/no-dynamic-require */
 const _import = x => require(`./search/${x}.vue`).default;
 

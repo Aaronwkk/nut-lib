@@ -4,7 +4,7 @@
     :visible="visible"
     :before-close="beforeClose"
     @close="onClose">
-    <el-form :model="model" ref="form">
+    <el-form :model="form" ref="form">
       <slot/>
     </el-form>
     <span slot="footer" class="dialog-footer">
@@ -19,7 +19,7 @@
 
 export default {
   props: {
-    model: {
+    form: {
       type: Object,
       default: () => {}
     },

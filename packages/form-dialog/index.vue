@@ -8,9 +8,9 @@
       <slot/>
     </el-form>
     <span slot="footer" class="dialog-footer">
-      <el-button @click="$emit('update:visible', false)">取 消</el-button>
-      <el-button @click="handleReset">重 置</el-button>
-      <el-button :loading="loading" type="primary" @click="handleConfirm">确 定</el-button>
+      <el-button @click="$emit('update:visible', false)">Cancel</el-button>
+      <el-button @click="handleReset">Reset</el-button>
+      <el-button :loading="loading" type="primary" @click="handleConfirm">Confirm</el-button>
     </span>
   </el-dialog>
 </template>

@@ -4,8 +4,8 @@
       <el-form :model="form" inline :rules="rules" ref="form">
         <slot name="form"/>
         <el-form-item>
-          <el-button type="primary" :loading="loading" @click="search">查询</el-button>
-          <el-button @click="handleCancle">重置</el-button>
+          <el-button type="primary" :loading="loading" @click="search">Search</el-button>
+          <el-button @click="handleCancle">Reset</el-button>
         </el-form-item>
       </el-form>
     </div>

@@ -2,22 +2,26 @@
   <el-dialog
     v-bind="_options"
     :visible="visible"
+    :title="_title"
     :before-close="beforeClose"
     @close="onClose">
     <el-form :model="form" ref="form">
       <slot/>
     </el-form>
     <span slot="footer" class="dialog-footer">
-      <el-button @click="$emit('update:visible', false)">Cancel</el-button>
-      <el-button @click="handleReset">Reset</el-button>
-      <el-button :loading="loading" type="primary" @click="handleConfirm">Confirm</el-button>
+      <el-button @click="$emit('update:visible', false)">{{t('nut.cancel')}}</el-button>
+      <el-button @click="handleReset">{{t('nut.reset')}}</el-button>
+      <el-button :loading="loading" type="primary" @click="handleConfirm">{{t('nut.confirm')}}</el-button>
     </span>
   </el-dialog>
 </template>
 
 <script>
 
+import locale from '../../src/mixins/locale'
+
 export default {
+  mixins: [locale],
   props: {
     form: {
       type: Object,
@@ -33,7 +37,7 @@ export default {
     },
     title: {
       type: String,
-      default: '新增'
+      default: ''
     },
     options: {
       type: Object,
@@ -53,17 +57,22 @@ export default {
     _options(){
       return this.options
     },
+    _title() {
+      this.title || this.t('nut.add')
+    }
   },
   methods: {
     onClose(){
+      this.$emit('closed')
       this.$refs.form.resetFields()
     },
     beforeClose(done){
-      this.$emit('closed')
+      this.$emit('beforeClose')
       this.$emit('update:visible', false)
       done()
     },
     handleConfirm(){
+      this.$emit('beforeConfirm')
       this.$refs.form.validate(async (vali)=>{
         if(vali){
           this.$emit('confirm')

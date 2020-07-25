@@ -4,8 +4,8 @@
       <el-form :model="form" inline :rules="rules" ref="form">
         <slot name="form"/>
         <el-form-item>
-          <el-button type="primary" :loading="loading" @click="search">Search</el-button>
-          <el-button @click="handleCancle">Reset</el-button>
+          <el-button type="primary" :loading="loading" @click="search">{{t('nut.search')}}</el-button>
+          <el-button @click="handleCancle">{{t('nut.reset')}}</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -23,8 +23,10 @@
 <script>
 
 import grid from '../grid'
+import locale from '../../src/mixins/locale'
 
 export default {
+  mixins: [locale],
   data(){
     return {
       loading: false
@@ -54,6 +56,7 @@ export default {
   },
   methods: {
     search(){
+      this.$emit('beforeSearch')
       this.$refs.form.validate((vali)=>{
         this.$emit('search')
         if(vali){

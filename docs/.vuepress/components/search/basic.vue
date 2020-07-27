@@ -19,8 +19,9 @@ export default {
     }
   },
   methods: {
-    async loadData() {
+    async loadData(form) {
       console.log('search success')
+      console.log(form)
     }
   }
 }

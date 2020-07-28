@@ -1,7 +1,7 @@
 <template>
   <div class="page-wrap">
     <div class="search">
-      <el-form :model="form" inline :rules="rules" ref="form">
+      <el-form :model="form" v-bind="_formOptions" inline :rules="rules" ref="form">
         <slot name="form"/>
         <el-form-item>
           <el-button type="primary" :loading="loading" @click="search">{{t('nut.search')}}</el-button>
@@ -13,6 +13,7 @@
     <grid
       ref="grid"
       :remote-method="api"
+      :options="_tableOptions"
       :rowKey="rowKey"
       @selectionChange="(val)=>$emit('selectionChange', val)"
     >
@@ -48,11 +49,27 @@ export default {
     rowKey: {
       type: Function,
       default: () => {}
+    },
+    formOptions: {
+      type: Object,
+      default: () => {}
+    },
+    tableOptions: {
+      type: Object,
+      default: () => {}
     }
   },
   mounted(){
     this.grid = this.$refs.grid
     this.table = this.$refs.grid.$refs.table
+  },
+  computed: {
+    _formOptions(){
+      return this.formOptions
+    },
+    _tableOptions(){
+      return this.tableOptions
+    }
   },
   methods: {
     search(){

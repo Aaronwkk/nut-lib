@@ -3,5 +3,5 @@ export default [
   'search-table',
   'form-dialog',
   'form-group',
-  'form-container'
+  'form-container',
 ]

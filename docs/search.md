@@ -35,6 +35,7 @@
 | title | 弹窗标题    |   String | -- |
 | visible | 弹窗状态（打开关闭）     |   Boolean | false |
 | options | el-dialog 弹窗相关属性     |   Object | -- |
+| events | el-dialog 时间监听     |   Object{event: Function} | null |
 
 
 

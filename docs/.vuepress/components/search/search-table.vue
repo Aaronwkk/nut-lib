@@ -1,7 +1,7 @@
 <template>
   <search-table ref="searchTable" :form="form" :api="remoteApi">
     <template slot="form">
-      <el-form-item label="关键字">
+      <el-form-item prop="value" label="关键字">
         <el-input v-model="form.value"></el-input>
       </el-form-item>
     </template>
@@ -28,7 +28,8 @@ export default {
     this.$refs.searchTable.search()
   },
   methods: {
-    async remoteApi(){
+    async remoteApi(form){
+      console.log(form)
       return {
         data: [
           {name: 'xiaoming', age: '18'}

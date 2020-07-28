@@ -1,6 +1,7 @@
 <template>
   <el-dialog
     v-bind="_options"
+    v-on="_event"
     :visible="visible"
     :title="_title"
     :before-close="beforeClose"
@@ -47,6 +48,10 @@ export default {
       type: Object,
       default: () => {}
     },
+    events: {
+      type: Object,
+      default: () => {}
+    }
   },
   data(){
     return {
@@ -58,7 +63,10 @@ export default {
       return this.options
     },
     _title() {
-      this.title || this.t('nut.add')
+      return this.title || this.t('nut.add')
+    },
+    _event(){
+      return this.events
     }
   },
   methods: {
@@ -91,7 +99,7 @@ export default {
     handleReset(){
       this.$emit('reset')
       this.$refs.form.resetFields()
-    }
+    },
   }
 };
 </script>

@@ -12,6 +12,9 @@
 export default {
   data() {
     return {
+      form: {
+        name: null
+      },
       detailList: [
         {
           age: 18,
@@ -36,14 +39,15 @@ export default {
     this.search()
   },
   methods: {
-    loadData() {
+    loadData(params) {
+      console.log(params)
       return {
         data: this.detailList,
         recordsCount: 30
       }
     },
     search(){
-      this.$refs.grid.loadData()
+      this.$refs.grid.loadData(this.form)
     }
   }
 };

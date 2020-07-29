@@ -14,6 +14,7 @@ module.exports = [
     title: '组件',
     collapsable: false,
     children: [
+      ['/i18', 'nut-lib 国际化'],
       ['/grid', 'Grid 表格分页组件库'],
       ['/search', 'Search 搜索组件库'],
       // ['/search-page', 'SearchPage 搜索列表组件'],

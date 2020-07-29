@@ -14,6 +14,7 @@
         :row-key="rowKey"
         height="100%"
         style="width: 100%;margin-bottom: 12px;"
+        :options="_options"
         @selection-change="onSelectionChange">
         <slot/>
       </el-table>
@@ -75,6 +76,10 @@ export default {
     rowKey: {
       type: Function,
       default: () => {}
+    },
+    options: {
+      type: Object,
+      default: () => {}
     }
   },
   data() {
@@ -96,6 +101,9 @@ export default {
       const offset = (this.currentPage - 1) * this.size;
       return this.data.slice(offset, offset + this.size);
     },
+    _options(){
+      return this.options
+    }
   },
   watch: {
     tableData(val) {

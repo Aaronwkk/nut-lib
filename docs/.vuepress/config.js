@@ -13,5 +13,6 @@ module.exports = {
   },
   chainWebpack: (config) => {
     config.resolve.alias.set('packages', path.join(__dirname, '../../packages'));
+    config.resolve.alias.set('nut-lib', path.join(__dirname, '../../src'));
   },
 };

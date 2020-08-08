@@ -6,13 +6,27 @@
     :title="_title"
     :before-close="beforeClose"
     @close="onClose">
-    <el-form :model="form" ref="form">
+    <el-form :model="form" v-bind="formOptions" ref="form">
       <slot/>
     </el-form>
     <span slot="footer" class="dialog-footer">
-      <el-button @click="$emit('update:visible', false)">{{t('nut.cancel')}}</el-button>
-      <el-button @click="handleReset">{{t('nut.reset')}}</el-button>
-      <el-button :loading="loading" type="primary" @click="handleConfirm">{{t('nut.confirm')}}</el-button>
+      <el-button
+        v-if="cancel" 
+        @click="$emit('update:visible', false)">
+      {{t('nut.cancel')}}
+      </el-button>
+      <el-button
+        v-if="reset"
+        @click="handleReset">
+      {{t('nut.reset')}}
+      </el-button>
+      <el-button
+        v-if="confirm"
+        :loading="loading"
+        type="primary"
+        @click="handleConfirm">
+      {{t('nut.confirm')}}
+      </el-button>
     </span>
   </el-dialog>
 </template>
@@ -24,6 +38,18 @@ import locale from '../../src/mixins/locale'
 export default {
   mixins: [locale],
   props: {
+    cancel: {
+      type: Boolean,
+      default: true
+    },
+    reset: {
+      type: Boolean,
+      default: true
+    },
+    confirm: {
+      type: Boolean,
+      default: true
+    },
     form: {
       type: Object,
       default: () => {}

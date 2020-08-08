@@ -1,6 +1,6 @@
 {
   "name": "nut-lib",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "private": false,
   "scripts": {
     "build": "vue-cli-service build --target lib --name @wkk/nutComp --dest lib src/index.js",

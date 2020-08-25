@@ -1,8 +1,9 @@
 const path = require('path');
 
 module.exports = {
-  title: 'unt-lib',
+  title: 'nut-lib',
   port: 8008,
+  base:'/nut-lib/',
   description: '基于Element-UI的后台标准组件库',
   themeConfig: {
     nav: [

@@ -13,5 +13,5 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git push -f git@github.com:aaronwkk/nut-lib.git master:gh-pages
+git push -f git@github.com:Aaronwkk/nut-lib.git master:gh-pages
 cd -
